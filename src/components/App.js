@@ -1,54 +1,37 @@
 import { useEffect, useState } from "react";
-import Nav from "./Nav";
-import Article from "./Article";
-import ArticleEntry from "./ArticleEntry";
-import { SignIn, SignOut, useAuthentication } from "../services/authService";
-import { fetchArticles, createArticle } from "../services/articleService";
+import { useAuthentication } from "../services/authService";
 import "./App.css";
+import Entry from "./Entry.js";
+import MoonriseList from "./MoonriseList.js";
+import Header from "./Header.js";
 
 export default function App() {
-  const [articles, setArticles] = useState([]);
-  const [article, setArticle] = useState(null);
-  const [writing, setWriting] = useState(false);
+  const [days, setDays] = useState([]);
   const user = useAuthentication();
 
-  // This is a trivial app, so just fetch all the articles only when
-  // a user logs in. A real app would do pagination. Note that
-  // "fetchArticles" is what gets the articles from the service and
-  // then "setArticles" writes them into the React state.
   useEffect(() => {
-    if (user) {
-      fetchArticles().then(setArticles);
+    if (!user) {
+      setDays([]);
     }
   }, [user]);
 
-  // Update the "database" *then* update the internal React state. These
-  // two steps are definitely necessary.
-  function addArticle({ title, body }) {
-    createArticle({ title, body }).then((article) => {
-      setArticle(article);
-      setArticles([article, ...articles]);
-      setWriting(false);
-    });
+  function getDays(zip) {
+    fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}?unitGroup=us&key=ZLZX6F2H4E7PLK9PNFHA46KBC&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setDays(data.days);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
   }
 
   return (
     <div className="App">
-      <header>
-        Blog
-        {user && <button onClick={() => setWriting(true)}>New Article</button>}
-        {!user ? <SignIn /> : <SignOut />}
-      </header>
-
-      {!user ? "" : <Nav articles={articles} setArticle={setArticle} />}
-
-      {!user ? (
-        ""
-      ) : writing ? (
-        <ArticleEntry addArticle={addArticle} />
-      ) : (
-        <Article article={article} />
-      )}
+      <Header user={user} />
+      <Entry getDays={getDays} />
+      {days.length > 0 && <MoonriseList days={days} />}
     </div>
   );
 }
