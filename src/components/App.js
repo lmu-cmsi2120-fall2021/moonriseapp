@@ -18,42 +18,46 @@ export default function App() {
 
   function getDays(zip) {
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}?unitGroup=us&key=ZLZX6F2H4E7PLK9PNFHA46KBC&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
+      //`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}?unitGroup=us&key=ZLZX6F2H4E7PLK9PNFHA46KBC&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}/next365days?unitGroup=us&key=ZLZX6F2H4E7PLK9PNFHA46KBC&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
     )
+      // HELP: embarassing. What is happening with response and data? Is .json casting?
       .then((response) => response.json())
       .then((data) => {
-        const moonrises = addDays(data.days);
-        setDays(moonrises);
+        //const moonrises = addDays(data.days);
+        //setDays(moonrises);
         // console.log(data);
+        setDays(data.days);
       })
       .catch((error) => console.log(error));
   }
 
-  function addDays(dayArray) {
-    // create additional days
-    // do math and add moonrise
-    const moonrises = [];
-    let day = dayArray[0];
-    if (day) {
-      moonrises.push(day);
-      for (let i = 0; i < 364; i++) {
-        const moonriseTime = dayjs(`${day.datetime}T${day.moonrise}`)
-          .add(50, "minute")
-          .format("hh:mm:ss");
-        const newDate = dayjs(day.datetime).add(1, "day").format("YYYY-MM-DD");
-        const newDay = {
-          datetime: newDate,
-          moonrise: moonriseTime,
-        };
-        day = newDay;
-        moonrises.push(newDay);
-      }
-      console.log("AddDays: ", moonrises);
-      return moonrises;
-    }
-  }
+  // function addDays(dayArray) {
+  //   // create additional days
+  //   // do math and add moonrise
+  //   const moonrises = [];
+  //   let day = dayArray[0];
+  //   if (day) {
+  //     moonrises.push(day);
+  //     for (let i = 0; i < 364; i++) {
+  //       const moonriseTime = dayjs(`${day.datetime}T${day.moonrise}`)
+  //         .add(50, "minute")
+  //         .format("hh:mm:ss");
+  //       const newDate = dayjs(day.datetime).add(1, "day").format("YYYY-MM-DD");
+  //       const newDay = {
+  //         datetime: newDate,
+  //         moonrise: moonriseTime,
+  //       };
+  //       day = newDay;
+  //       moonrises.push(newDay);
+  //     }
+  //     console.log("AddDays: ", moonrises);
+  //     return moonrises;
+  //   }
+  // }
+  // HELP: what was happening here below w addDays?
 
-  addDays(days);
+  //  addDays(days);
 
   return (
     <div className="App">
