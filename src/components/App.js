@@ -18,7 +18,7 @@ export default function App() {
 
   function getDays(zip) {
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}/next30days?unitGroup=us&key=ZLZX6F2H4E7PLK9PNFHA46KBC&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}/next30days?unitGroup=us&key=${process.env.REACT_APP_MOONRISE_KEY}&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
     )
       .then((response) => response.json())
       .then((data) => {
