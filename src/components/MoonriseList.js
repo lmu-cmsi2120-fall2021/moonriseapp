@@ -7,8 +7,10 @@ export default function MoonriseList({ days }) {
       <h1>Moonrise Times</h1>
       {days
         .filter((day) => day.moonrise !== undefined)
+        .filter((day) => day.moonrise > day.sunset)
         .map((day) => (
           <Moonrise key={day.datetime} day={day} />
+          // HELP - what was this key business?
         ))}
     </div>
   );
