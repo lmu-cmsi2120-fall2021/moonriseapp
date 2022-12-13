@@ -38,20 +38,22 @@ function addEvent(event, auth) {
       if (err) {
         console.log("Rejecting because of error");
         reject(err);
+      } else {
+        console.log("Request successful");
+        resolve(res.data);
       }
-      console.log("Request successful");
-      resolve(res.data);
     });
   });
 }
 
 exports.addEventToCalendar = functions.https.onRequest((request, response) => {
-  const eventData = {
-    eventName: request.body.eventName,
-    description: request.body.description,
-    startTime: request.body.startTime,
-    endTime: request.body.endTime,
-  };
+  const eventData = JSON.parse(request.body);
+  // const eventData = {
+  //   eventName: request.body.eventName,
+  //   description: request.body.description,
+  //   startTime: request.body.startTime,
+  //   endTime: request.body.endTime,
+  // };
   const oAuth2Client = new OAuth2(
       googleCredentials.web.client_id,
       googleCredentials.web.client_secret,

@@ -14,12 +14,6 @@ export default function App() {
     if (!user) {
       setDays([]);
     }
-    fetch("https://us-central1-moonriseapp-bb149.cloudfunctions.net/helloWorld")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("From Firebase: ", data);
-      })
-      .catch((error) => console.log(error));
   }, [user]);
 
   function getDays(zip) {
