@@ -60,7 +60,6 @@ p {
 }
 
 .CalendarButton {
-  width: 20%;
 }
 
 header {
@@ -68,9 +67,21 @@ header {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  background-color: black;
   color: white;
   padding: 20px 20px;
+  /* height: 200px; */
+  background-image: url(https://images.unsplash.com/photo-1563492017365-b1ef5422827c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2861&q=80);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 200px;
+}
+
+header img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 form {
@@ -112,6 +123,28 @@ article .body {
   background-color: red;
   color: gold;
   padding: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  min-width: 50px;
+  background-color: forestgreen;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: darkgreen;
+  /* transform: scale(1.1); */
+  transform: translateY(-5px);
+  -webkit-box-shadow: 6px 7px 19px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 7px 19px 1px rgba(0, 0, 0, 0.5);
+  transition: all 0.6s;
+}
+
+button:active {
+  transform: translateY(-1px);
 }
 
 @media screen and (max-width: 700px) {
