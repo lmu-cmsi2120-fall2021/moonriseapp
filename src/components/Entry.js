@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export default function Entry({ getDays }) {
+export default function Entry({ getData }) {
   const [zip, setZip] = useState("");
 
   function submit(e) {
     e.preventDefault();
-    getDays(zip);
+    getData(zip);
     setZip("");
   }
 

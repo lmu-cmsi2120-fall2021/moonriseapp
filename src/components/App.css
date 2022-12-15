@@ -1,22 +1,79 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 10px 0;
+}
+
 .App {
-  display: grid;
-  grid-template-rows: min-content auto;
-  grid-template-columns: 250px auto;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow: scroll;
+  align-items: center;
+}
+
+.mainContent {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+}
+
+.leftColumn {
+  width: 40%;
+}
+
+.rightColumn {
+  width: 50%;
+}
+
+.rightColumn h1 {
+  margin-bottom: 20px;
+}
+
+.HUD {
+  margin-top: 60px;
+}
+
+.MoonriseList {
+}
+
+.MoonriseRow {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.MoonphaseImage {
+  width: 10%;
+  margin-right: 20px;
+}
+
+.MoonriseTime {
+  margin-right: 20px;
+}
+
+.CalendarButton {
+  width: 20%;
 }
 
 header {
+  width: 100%;
+  align-items: center;
   display: flex;
   justify-content: space-between;
   background-color: black;
   color: white;
-  grid-column: 1 / span 2;
-  padding: 10px 5px;
+  padding: 20px 20px;
 }
 
 form {
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -55,4 +112,11 @@ article .body {
   background-color: red;
   color: gold;
   padding: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .mainContent {
+    width: 95%;
+    flex-direction: column;
+  }
 }

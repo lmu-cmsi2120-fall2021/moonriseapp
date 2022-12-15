@@ -4,25 +4,27 @@ import "./App.css";
 import Entry from "./Entry.js";
 import MoonriseList from "./MoonriseList.js";
 import Header from "./Header.js";
+import HUD from "./HUD.js";
+
 import dayjs from "dayjs";
 
 export default function App() {
-  const [days, setDays] = useState([]);
+  const [data, setData] = useState(null);
   const user = useAuthentication();
 
   useEffect(() => {
     if (!user) {
-      setDays([]);
+      setData(null);
     }
   }, [user]);
 
-  function getDays(zip) {
+  function getData(zip) {
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}/next30days?unitGroup=us&key=${process.env.REACT_APP_MOONRISE_KEY}&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${zip}/next60days?unitGroup=us&key=${process.env.REACT_APP_MOONRISE_KEY}&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset&contentType=json`
     )
       .then((response) => response.json())
       .then((data) => {
-        setDays(data.days);
+        setData(data);
       })
       .catch((error) => console.log(error));
   }
@@ -30,8 +32,19 @@ export default function App() {
   return (
     <div className="App">
       <Header user={user} />
-      <Entry getDays={getDays} />
-      {days.length > 0 && <MoonriseList days={days} />}
+      <div className="mainContent">
+        <div className="leftColumn">
+          <Entry getData={getData} />
+          {data && (
+            <HUD
+              latitude={data.latitude}
+              longitude={data.longitude}
+              timezone={data.timezone}
+            />
+          )}
+        </div>
+        {data && <MoonriseList days={data.days} />}
+      </div>
     </div>
   );
 }
