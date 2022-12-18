@@ -9,12 +9,18 @@
         "firebase-debug.log",
         "firebase-debug.*.log"
       ],
-      "predeploy": ["npm --prefix functions run lint"]
+      "predeploy": [
+        "npm --prefix functions run lint"
+      ]
     }
   ],
   "hosting": {
-    "public": "build",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
