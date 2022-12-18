@@ -1,11 +1,13 @@
 # Moonrise App
 
-This is a Moonrise App to provide a user Moonrise times after dark, based on their zip code.
+This is a Moonrise App. When given a zip code, the app will provide a user with Moonrise times for the next 60 days that fall after sunset and before moonrise.
 
-In theory, a signed in user could then create Google Calender events for these moonrises in their OWN calendar, using the "add to calendar" button.
+Ideally, once signed in via a google account, a user could then create Google Calender events for these moonrises in their OWN calendar, using the "add to calendar" button.
 
-In reality, the "add to calendar" button will create events in MY google calendar only.
+In reality, the "add to calendar" button will create events in MY google calendar only. Multiuser calendar functionality will have to be a future endeavor (thanks for being understanding, Dr. Toal)!
 
-Credit to Scott McCartney for explaining Firebase Cloud functions in this great tutorial and for the code for the addEvent() firebase function:
+# Credits
 
-https://medium.com/zero-equals-false/integrating-firebase-cloud-functions-with-google-calendar-api-9a5ac042e869
+I relied heavily on Scott McCartney's [Firebase Cloud functions tutorial](https://medium.com/zero-equals-false/integrating-firebase-cloud-functions-with-google-calendar-api-9a5ac042e869) to get set up with Firebase functions and for the code for the addEvent() firebase function.
+
+I also used Dr. Toal's [Blog Starter Code](https://github.com/lmucs/blog-starter-app) as a starting point for this app.
