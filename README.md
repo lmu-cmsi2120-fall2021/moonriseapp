@@ -1,6 +1,6 @@
 # Moonrise App
 
-This is a Moonrise App. When given a zip code, the app will provide a user with Moonrise times for the next 60 days that fall after sunset and before moonrise.
+This is a Moonrise App. When given a zip code, the app will provide a user with Moonrise times for the next 60 days that fall after sunset and before midnight.
 
 Ideally, once signed in via a google account, a user could then create Google Calender events for these moonrises in their OWN calendar, using the "add to calendar" button.
 
