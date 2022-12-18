@@ -10,7 +10,7 @@ export default function Entry({ getData }) {
   }
 
   return (
-    <form onSubmit={submit}>
+    <form className="entry" onSubmit={submit}>
       <input value={zip} onChange={(e) => setZip(e.target.value)} />
       <button type="submit">enter zipcode</button>
     </form>

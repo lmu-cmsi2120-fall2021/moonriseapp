@@ -43,7 +43,7 @@ export default function App() {
             />
           )}
         </div>
-        {data && <MoonriseList days={data.days} />}
+        {data && <MoonriseList user={user} days={data.days} />}
       </div>
     </div>
   );

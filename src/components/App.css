@@ -8,12 +8,44 @@ p {
   margin: 10px 0;
 }
 
+html {
+  font-size: 10px;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: scroll;
   align-items: center;
+  background-color: rgb(4, 3, 4);
+  font-size: 2rem;
+}
+
+.entry button {
+  margin-top: 15px;
+}
+
+.HUD {
+  margin-top: 60px;
+  font-family: monospace;
+  color: #39ff14;
+  font-style: italic;
+}
+
+.HUDData {
+  margin-left: 20px;
+}
+
+.leftColumn {
+  width: 40%;
+}
+
+.leftColumn h1 {
+  margin-bottom: 30px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
+  font-style: normal;
 }
 
 .mainContent {
@@ -24,30 +56,16 @@ p {
   justify-content: space-between;
 }
 
-.leftColumn {
-  width: 40%;
-}
-
-.rightColumn {
-  width: 50%;
-}
-
-.rightColumn h1 {
-  margin-bottom: 20px;
-}
-
-.HUD {
-  margin-top: 60px;
-}
-
-.MoonriseList {
-}
-
 .MoonriseRow {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 10px;
   align-items: center;
+  width: 580px;
+}
+
+.MoonriseRow button {
+  min-width: 170px;
 }
 
 .MoonphaseImage {
@@ -57,18 +75,77 @@ p {
 
 .MoonriseTime {
   margin-right: 20px;
+  width: 90%;
 }
 
-.CalendarButton {
+.MoonriseTimeUser {
+  margin-right: 20px;
+  width: 42%;
+}
+
+.rightColumn {
+  font-family: monospace;
+  color: #39ff14;
+  width: 50%;
+}
+
+.rightColumn h1 {
+  margin-bottom: 20px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
+}
+
+.title {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  padding-bottom: 35px;
+}
+
+button {
+  padding: 10px 15px;
+  min-width: 50px;
+  background-color: forestgreen;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: monospace;
+}
+
+button:hover {
+  background-color: darkgreen;
+  /* transform: scale(1.1); */
+  transform: translateY(-5px);
+  -webkit-box-shadow: 6px 7px 19px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 7px 19px 1px rgba(0, 0, 0, 0.5);
+  transition: all 0.6s;
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form input,
+form textarea {
+  margin-bottom: 10px;
+  width: 300px;
 }
 
 header {
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 4px #ff0000;
   width: 100%;
   align-items: center;
   display: flex;
   justify-content: space-between;
   color: white;
-  padding: 20px 20px;
+  padding: 20px 60px;
   /* height: 200px; */
   background-image: url(https://images.unsplash.com/photo-1563492017365-b1ef5422827c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2861&q=80);
   background-size: cover;
@@ -84,67 +161,10 @@ header img {
   width: 100%;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-form input,
-form textarea {
-  margin-bottom: 10px;
-  width: 300px;
-}
-
-nav,
-article {
-  height: 100%;
-  padding: 10px;
-}
-
-nav {
-  background-color: #dee9ff;
-}
-
-nav p:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-article .date {
-  font-style: italic;
-}
-
-article .body {
-  white-space: break-spaces;
-}
-
 .error {
   background-color: red;
   color: gold;
   padding: 5px;
-}
-
-button {
-  padding: 10px 15px;
-  min-width: 50px;
-  background-color: forestgreen;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: darkgreen;
-  /* transform: scale(1.1); */
-  transform: translateY(-5px);
-  -webkit-box-shadow: 6px 7px 19px 1px rgba(0, 0, 0, 0.5);
-  box-shadow: 6px 7px 19px 1px rgba(0, 0, 0, 0.5);
-  transition: all 0.6s;
-}
-
-button:active {
-  transform: translateY(-1px);
 }
 
 @media screen and (max-width: 700px) {

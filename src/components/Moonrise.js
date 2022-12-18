@@ -8,8 +8,9 @@ import fullMoon from "../images/4_full.png";
 import wanGib from "../images/5_waning_gibbous.png";
 import lastQuarter from "../images/6_last_quarter.png";
 import wanCresc from "../images/waning_crescent.png";
+import classNames from "classnames";
 
-export default function Moonrise({ day }) {
+export default function Moonrise({ user, day }) {
   function submit(e) {
     const endTime = dayjs(`${day.datetime}T${day.moonrise}`).add(20, "minute");
     const event = {
@@ -29,21 +30,7 @@ export default function Moonrise({ day }) {
         body: JSON.stringify(event),
       }
     );
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log("From Firebase: ", data);
-    // })
-    // .catch((error) => console.log(error));
   }
-
-  //   const jsonOutput = {
-  //     eventName: "Moonrise",
-  //     description: "Tonight's Moonrise",
-  //     startTime: startTime.format(),
-  //     endTime: endTime.format(),
-  //   };
-  //   // HELP - in above... rationale for when to use ${}
-  // }
 
   return (
     <div className="MoonriseRow">
@@ -95,15 +82,17 @@ export default function Moonrise({ day }) {
           alt="last quarter moon"
         />
       )}
-      <p className="MoonriseTime">
+      <p className={classNames("MoonriseTime", { MoonriseTimeUser: user })}>
         {dayjs(`${day.datetime}T${day.moonrise}`).format(
-          "ddd, MMMM D - hh:mm a"
+          "ddd, MMMM D, hh:mm a"
         )}
         {day.moonphase === 0.5 && " - Full Moon"}
       </p>
-      <button className="CalendarButton" onClick={submit}>
-        add to calendar
-      </button>
+      {user && (
+        <button className="CalendarButton" onClick={submit}>
+          add to calendar
+        </button>
+      )}
     </div>
   );
 }
